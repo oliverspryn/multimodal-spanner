@@ -1,0 +1,1 @@
+/Users/oliverspryn/Documents/oliverspryn/MultimodalSpanner/buildSrc/build/classes/kotlin/main/Libraries.class:/Users/oliverspryn/Documents/oliverspryn/MultimodalSpanner/buildSrc/build/classes/kotlin/main/Versions.class

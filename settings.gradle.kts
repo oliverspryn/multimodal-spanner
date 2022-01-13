@@ -1,17 +1,19 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
+        gradlePluginPortal()
         mavenCentral()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
     repositories {
         google()
         mavenCentral()
     }
 }
+
 rootProject.name = "MultimodalSpanner"
-include ':app'
-include ':multimodal'
+include(":app", ":multimodal")
