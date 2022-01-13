@@ -13,6 +13,7 @@ dependencies {
         api("${Libraries.CORE_KTX}:${Versions.CORE_KTX}")
         api("${Libraries.MATERIAL}:${Versions.MATERIAL}")
         api("${Libraries.MATERIAL_3}:${Versions.MATERIAL_3}")
+        api("${Libraries.NAVIGATION_COMPOSE}:${Versions.NAVIGATION_COMPOSE}")
 
         // endregion
 
