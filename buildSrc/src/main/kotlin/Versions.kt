@@ -31,6 +31,7 @@ object Versions {
     const val CORE_KTX = "1.7.0"
     const val MATERIAL = "1.6.0-alpha01"
     const val MATERIAL_3 = "1.0.0-alpha02"
+    const val NAVIGATION_COMPOSE = "2.4.0-beta02"
 
     // endregion
 

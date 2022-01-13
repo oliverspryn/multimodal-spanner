@@ -81,6 +81,7 @@ dependencies {
     implementation(Libraries.CORE_KTX)
     implementation(Libraries.MATERIAL)
     implementation(Libraries.MATERIAL_3)
+    implementation(Libraries.NAVIGATION_COMPOSE)
 
     // endregion
 

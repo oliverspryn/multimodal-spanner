@@ -8,6 +8,7 @@ object Libraries {
     const val CORE_KTX = "androidx.core:core-ktx"
     const val MATERIAL = "com.google.android.material:material"
     const val MATERIAL_3 = "androidx.compose.material3:material3"
+    const val NAVIGATION_COMPOSE = "androidx.navigation:navigation-compose"
 
     // endregion
 
