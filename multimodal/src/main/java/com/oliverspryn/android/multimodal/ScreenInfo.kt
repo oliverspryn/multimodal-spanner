@@ -2,6 +2,8 @@ package com.oliverspryn.android.multimodal
 
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.toComposeRect
 import androidx.compose.ui.platform.LocalConfiguration
@@ -54,7 +56,10 @@ class ScreenInfo(
         return windowDpSize
     }
 
-    fun createClassifier(devicePosture: WindowLayoutInfo, windowDpSize: DpSize): ScreenClassifier {
+    @Composable
+    fun createClassifier(devicePostureFlow: StateFlow<WindowLayoutInfo>, windowDpSize: DpSize): ScreenClassifier {
+        val devicePosture by devicePostureFlow.collectAsState()
+
         val foldingFeature = devicePosture.displayFeatures.find {
             it is FoldingFeature
         } as? FoldingFeature

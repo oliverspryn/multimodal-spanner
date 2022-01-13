@@ -13,7 +13,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val screenInfo = ScreenInfo(this)
+        val devicePosture = screenInfo.captureDevicePosture()
+
         setContent {
+            val windowDpSize = screenInfo.captureWindowDpSize()
+            screenInfo.createClassifier(devicePosture, windowDpSize)
+
             MultimodalSpanner()
         }
     }
