@@ -1,8 +1,8 @@
 *.iml
 
 .cxx
-.externalNativeBuild
 .DS_Store
+.externalNativeBuild
 .gradle
 
 local.properties
