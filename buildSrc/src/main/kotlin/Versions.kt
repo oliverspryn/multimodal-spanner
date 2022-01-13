@@ -19,20 +19,25 @@ object Versions {
     const val COMPOSE = "1.1.0-beta01"
     val JVM = JavaVersion.VERSION_11
     val JVM_STRING = JavaVersion.VERSION_11.toString()
-    const val KOTLIN = "1.6.10"
+    const val KOTLIN = "1.5.31"
 
     // endregion
 
     /////////////////////////////////////////////////////////////////////
 
-    // region Non-Core, Runtime Libraries
+    // region Application
 
-    const val ACCOMPANIST = "0.21.1-beta"
     const val ACTIVITY_COMPOSE = "1.4.0"
-    const val COMPOSE_MATERIAL_3 = "1.0.0-alpha01"
     const val CORE_KTX = "1.7.0"
-    const val LIFECYCLE_RUNTIME_KTX = "2.4.0"
-    const val MATERIAL = "1.5.0-alpha05"
+    const val MATERIAL_3 = "1.0.0-alpha02"
+
+    // endregion
+
+    /////////////////////////////////////////////////////////////////////
+
+    // region Unit Tests
+
+    const val JUNIT = "4.13.2"
 
     // endregion
 }

@@ -16,4 +16,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "MultimodalSpanner"
-include(":app", ":multimodal")
+include(":app", ":constraints", ":multimodal")
