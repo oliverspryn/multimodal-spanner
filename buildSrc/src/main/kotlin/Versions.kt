@@ -29,6 +29,7 @@ object Versions {
 
     const val ACTIVITY_COMPOSE = "1.4.0"
     const val CORE_KTX = "1.7.0"
+    const val MATERIAL = "1.6.0-alpha01"
     const val MATERIAL_3 = "1.0.0-alpha02"
 
     // endregion

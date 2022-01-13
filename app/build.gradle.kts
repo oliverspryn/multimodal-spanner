@@ -79,6 +79,7 @@ dependencies {
     implementation(Libraries.COMPOSE_UI)
     implementation(Libraries.COMPOSE_UI_TOOLING_PREVIEW)
     implementation(Libraries.CORE_KTX)
+    implementation(Libraries.MATERIAL)
     implementation(Libraries.MATERIAL_3)
 
     // endregion
