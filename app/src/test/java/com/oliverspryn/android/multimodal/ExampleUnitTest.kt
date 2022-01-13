@@ -1,8 +1,7 @@
 package com.oliverspryn.android.multimodal
 
 import org.junit.Test
-
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 
 class ExampleUnitTest {
     @Test
