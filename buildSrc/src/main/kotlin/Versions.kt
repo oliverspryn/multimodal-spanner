@@ -32,6 +32,7 @@ object Versions {
     const val MATERIAL = "1.6.0-alpha01"
     const val MATERIAL_3 = "1.0.0-alpha02"
     const val NAVIGATION_COMPOSE = "2.4.0-beta02"
+    const val WINDOW_MANAGER = "1.0.0-beta04"
 
     // endregion
 
