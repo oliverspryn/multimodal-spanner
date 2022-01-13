@@ -51,6 +51,16 @@ dependencies {
 
     /////////////////////////////////////////////////////////////////////
 
+    // region Application
+
+    implementation(Libraries.ACTIVITY_COMPOSE)
+    implementation(Libraries.COMPOSE_UI_UNIT)
+    implementation(Libraries.WINDOW_MANAGER)
+
+    // endregion
+
+    /////////////////////////////////////////////////////////////////////
+
     // region Unit Tests
 
     testImplementation(Libraries.JUNIT)
