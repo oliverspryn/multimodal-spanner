@@ -19,10 +19,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.oliverspryn.android.multimodal.R
+import com.oliverspryn.android.multimodal.model.Dimension
+import com.oliverspryn.android.multimodal.model.ScreenClassifier
+import com.oliverspryn.android.multimodal.model.WindowSizeClass
 import com.oliverspryn.android.multimodal.ui.theme.MultimodalSpannerTheme
 
 @Composable
-fun ScreenInfoScreen() {
+fun ScreenInfoScreen(screenClassifier: ScreenClassifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -31,7 +34,7 @@ fun ScreenInfoScreen() {
     ) {
         Column {
             Text(
-                text = "Screen Classifier Type Here",
+                text = screenClassifier::class.java.simpleName,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -41,7 +44,7 @@ fun ScreenInfoScreen() {
             Spacer(modifier = Modifier.height(32.dp))
 
             Text(
-                text = "toString() representation of classifier here",
+                text = screenClassifier.toString(),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -50,34 +53,46 @@ fun ScreenInfoScreen() {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            Text(
-                text = stringResource(id = R.string.hinge_position),
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier.fillMaxWidth()
-            )
+            if (screenClassifier is ScreenClassifier.HalfOpened) {
+                Text(
+                    text = stringResource(id = R.string.hinge_position),
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.fillMaxWidth()
+                )
 
-            Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
-            Text(
-                text = stringResource(R.string.hinge_position_coordinates, 0, 0, 0, 0),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier.fillMaxWidth()
-            )
+                Text(
+                    text = stringResource(
+                        R.string.hinge_position_coordinates,
+                        screenClassifier.hingePosition.top,
+                        screenClassifier.hingePosition.bottom,
+                        screenClassifier.hingePosition.left,
+                        screenClassifier.hingePosition.right
+                    ),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.fillMaxWidth()
+                )
 
-            Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
-            Text(
-                text = stringResource(R.string.hinge_position_size, 0, 0),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier.fillMaxWidth()
-            )
+                Text(
+                    text = stringResource(
+                        R.string.hinge_position_size,
+                        screenClassifier.hingePosition.width(),
+                        screenClassifier.hingePosition.height()
+                    ),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         }
     }
 }
@@ -87,6 +102,17 @@ fun ScreenInfoScreen() {
 @Composable
 fun PreviewBookMode() {
     MultimodalSpannerTheme {
-        ScreenInfoScreen()
+        ScreenInfoScreen(
+            screenClassifier = ScreenClassifier.FullyOpened(
+                height = Dimension(
+                    dp = 1080.dp,
+                    sizeClass = WindowSizeClass.Expanded
+                ),
+                width = Dimension(
+                    dp = 1920.dp,
+                    sizeClass = WindowSizeClass.Expanded
+                )
+            )
+        )
     }
 }

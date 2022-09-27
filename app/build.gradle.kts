@@ -82,6 +82,7 @@ dependencies {
     implementation(Libraries.MATERIAL)
     implementation(Libraries.MATERIAL_3)
     implementation(Libraries.NAVIGATION_COMPOSE)
+    implementation(Libraries.WINDOW_MANAGER)
 
     // endregion
 

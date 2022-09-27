@@ -14,8 +14,8 @@ object Versions {
 
     // region Core Libraries
 
-    const val ANDROID_APPLICATION_PLUGIN = "7.2.0-alpha03"
-    const val ANDROID_LIBRARY_PLUGIN = "7.2.0-alpha03"
+    const val ANDROID_APPLICATION_PLUGIN = "7.2.2"
+    const val ANDROID_LIBRARY_PLUGIN = "7.2.2"
     const val COMPOSE = "1.1.0-beta01"
     val JVM = JavaVersion.VERSION_11
     val JVM_STRING = JavaVersion.VERSION_11.toString()

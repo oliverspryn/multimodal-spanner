@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.oliverspryn.android.multimodal.model.ScreenClassifier
 import com.oliverspryn.android.multimodal.ui.adaptivelayouts.AdaptiveLayoutsRoute
 import com.oliverspryn.android.multimodal.ui.home.HomeRoute
 import com.oliverspryn.android.multimodal.ui.screeninfo.ScreenInfoRoute
@@ -12,7 +13,8 @@ import com.oliverspryn.android.multimodal.ui.screeninfo.ScreenInfoRoute
 @Composable
 fun MultimodalSpannerNavGraph(
     navController: NavHostController,
-    modifier: Modifier
+    modifier: Modifier,
+    screenClassifier: ScreenClassifier
 ) {
     NavHost(
         navController = navController,
@@ -27,7 +29,7 @@ fun MultimodalSpannerNavGraph(
         }
 
         composable(Destinations.ScreenInfo) {
-            ScreenInfoRoute()
+            ScreenInfoRoute(screenClassifier)
         }
 
         composable(Destinations.AdaptiveLayouts) {

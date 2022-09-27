@@ -43,6 +43,14 @@ android {
     kotlinOptions {
         jvmTarget = Versions.JVM_STRING
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.COMPOSE
+    }
 }
 
 dependencies {
