@@ -12,8 +12,16 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val screenCapture = ScreenCapture(this)
+        val devicePosture = screenCapture.devicePosture()
+
         setContent {
-            MultimodalSpanner()
+            val windowDpSize = screenCapture.windowDpSize()
+
+            MultimodalSpanner(
+                devicePosture = devicePosture,
+                windowDpSize = windowDpSize
+            )
         }
     }
 }

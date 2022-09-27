@@ -66,6 +66,7 @@ android {
 
 dependencies {
     api(platform(project(":constraints")))
+    api(platform(project(":multimodal")))
     kapt(platform(project(":constraints")))
 
     /////////////////////////////////////////////////////////////////////
@@ -73,7 +74,6 @@ dependencies {
     // region Application
 
     // AndroidX
-
     debugImplementation(Libraries.COMPOSE_UI_TOOLING)
     implementation(Libraries.ACTIVITY_COMPOSE)
     implementation(Libraries.COMPOSE_UI)
@@ -82,6 +82,7 @@ dependencies {
     implementation(Libraries.MATERIAL)
     implementation(Libraries.MATERIAL_3)
     implementation(Libraries.NAVIGATION_COMPOSE)
+    implementation(Libraries.WINDOW_MANAGER)
 
     // endregion
 

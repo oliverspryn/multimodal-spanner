@@ -43,11 +43,29 @@ android {
     kotlinOptions {
         jvmTarget = Versions.JVM_STRING
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.COMPOSE
+    }
 }
 
 dependencies {
     api(platform(project(":constraints")))
     kapt(platform(project(":constraints")))
+
+    /////////////////////////////////////////////////////////////////////
+
+    // region Application
+
+    implementation(Libraries.ACTIVITY_COMPOSE)
+    implementation(Libraries.COMPOSE_UI_UNIT)
+    implementation(Libraries.WINDOW_MANAGER)
+
+    // endregion
 
     /////////////////////////////////////////////////////////////////////
 
