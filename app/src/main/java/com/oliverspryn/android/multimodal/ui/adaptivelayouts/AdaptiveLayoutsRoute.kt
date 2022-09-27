@@ -1,6 +1,7 @@
 package com.oliverspryn.android.multimodal.ui.adaptivelayouts
 
-import androidx.compose.material3.Text
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -19,7 +20,9 @@ fun AdaptiveLayoutsRoute(
 
     AdaptiveLayoutsRoute(
         screenClassifier = screenClassifier,
-        uiState = uiState
+        uiState = uiState,
+        onBackPressed = { adaptiveLayoutsViewModel.closeDetails() },
+        onSelectNumber = { selectedNumber -> adaptiveLayoutsViewModel.openDetails(selectedNumber) }
     )
 }
 
@@ -27,20 +30,59 @@ fun AdaptiveLayoutsRoute(
 private fun AdaptiveLayoutsRoute(
     screenClassifier: ScreenClassifier,
     uiState: AdaptiveLayoutsUiState,
+    onBackPressed: () -> Unit,
+    onSelectNumber: (Int) -> Unit
 ) {
     var adaptiveLayoutsScreenType by rememberSaveable { mutableStateOf(AdaptiveLayoutsScreenType.ListOnly) }
     adaptiveLayoutsScreenType =
         screenClassifier.toAdaptiveLayoutsScreenType(numberSelected = uiState.numberSelected)
 
-    val name = when (adaptiveLayoutsScreenType) {
-        AdaptiveLayoutsScreenType.ListOnly -> "List"
-        AdaptiveLayoutsScreenType.DetailOnly -> "Detail"
-        AdaptiveLayoutsScreenType.ListOneThirdAndDetailTwoThirds -> "1/3 and 2/3"
-        AdaptiveLayoutsScreenType.ListHalfAndDetailHalf -> "1/2 and 1/2"
-        AdaptiveLayoutsScreenType.ListDetailStacked -> "Stacked"
-    }
+    val listState = rememberLazyListState()
 
-    Text(text = name)
+    when (adaptiveLayoutsScreenType) {
+        AdaptiveLayoutsScreenType.ListOnly -> AdaptiveLayoutsListScreen(
+            listState = listState,
+            onSelectNumber = onSelectNumber
+        )
+
+        AdaptiveLayoutsScreenType.DetailOnly -> {
+            AdaptiveLayoutsDetailScreen(
+                uiState = uiState
+            )
+
+            BackHandler {
+                onBackPressed()
+            }
+        }
+
+        AdaptiveLayoutsScreenType.ListOneThirdAndDetailTwoThirds -> AdaptiveLayoutsListOneThirdAndDetailTwoThirds(
+            listState = listState,
+            uiState = uiState,
+            onSelectNumber = onSelectNumber
+        )
+
+        AdaptiveLayoutsScreenType.ListHalfAndDetailHalf -> {
+            check(screenClassifier is ScreenClassifier.HalfOpened.BookMode)
+
+            AdaptiveLayoutsListHalfAndDetailHalf(
+                listState = listState,
+                screenClassifier = screenClassifier,
+                uiState = uiState,
+                onSelectNumber = onSelectNumber
+            )
+        }
+
+        AdaptiveLayoutsScreenType.ListDetailStacked -> {
+            check(screenClassifier is ScreenClassifier.HalfOpened.TableTopMode)
+
+            AdaptiveLayoutsStacked(
+                listState = listState,
+                screenClassifier = screenClassifier,
+                uiState = uiState,
+                onSelectNumber = onSelectNumber
+            )
+        }
+    }
 }
 
 enum class AdaptiveLayoutsScreenType {
