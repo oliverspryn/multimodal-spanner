@@ -2,11 +2,13 @@ package com.oliverspryn.android.multimodal.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.oliverspryn.android.multimodal.model.ScreenClassifier
 import com.oliverspryn.android.multimodal.ui.adaptivelayouts.AdaptiveLayoutsRoute
+import com.oliverspryn.android.multimodal.ui.adaptivelayouts.AdaptiveLayoutsViewModel
 import com.oliverspryn.android.multimodal.ui.home.HomeRoute
 import com.oliverspryn.android.multimodal.ui.screeninfo.ScreenInfoRoute
 
@@ -33,7 +35,12 @@ fun MultimodalSpannerNavGraph(
         }
 
         composable(Destinations.AdaptiveLayouts) {
-            AdaptiveLayoutsRoute()
+            val viewModel: AdaptiveLayoutsViewModel = viewModel()
+
+            AdaptiveLayoutsRoute(
+                adaptiveLayoutsViewModel = viewModel,
+                screenClassifier = screenClassifier
+            )
         }
     }
 }
