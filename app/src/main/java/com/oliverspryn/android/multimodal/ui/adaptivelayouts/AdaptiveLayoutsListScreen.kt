@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.MaterialTheme
@@ -20,25 +21,32 @@ import com.oliverspryn.android.multimodal.ui.theme.MultimodalSpannerTheme
 
 @Composable
 fun AdaptiveLayoutsListScreen(
-    numbers: List<Int> = (1..50).toList()
+    numbers: List<Int> = (1..50).toList(),
+    listState: LazyListState,
+    onSelectNumber: (Int) -> Unit
 ) {
-    LazyColumn {
+
+    LazyColumn(state = listState) {
         items(numbers) { number ->
             RowWithNumber(
-                number = number
+                number = number,
+                onSelectNumber = onSelectNumber
             )
         }
     }
 }
 
 @Composable
-private fun RowWithNumber(number: Int) {
+private fun RowWithNumber(
+    number: Int,
+    onSelectNumber: (Int) -> Unit
+) {
     Box(
         modifier = Modifier
             .clickable(
                 indication = rememberRipple(bounded = true),
                 interactionSource = remember { MutableInteractionSource() },
-                onClick = { }
+                onClick = { onSelectNumber(number) }
             )
             .padding(all = 8.dp)
             .fillMaxWidth()
@@ -57,7 +65,10 @@ private fun RowWithNumber(number: Int) {
 @Composable
 fun PreviewAdaptiveLayoutsListScreen() {
     MultimodalSpannerTheme {
-        AdaptiveLayoutsListScreen()
+        AdaptiveLayoutsListScreen(
+            listState = LazyListState(),
+            onSelectNumber = { }
+        )
     }
 }
 
@@ -66,6 +77,9 @@ fun PreviewAdaptiveLayoutsListScreen() {
 @Composable
 fun PreviewRowWithNumber() {
     MultimodalSpannerTheme {
-        RowWithNumber(number = 42)
+        RowWithNumber(
+            number = 42,
+            onSelectNumber = { }
+        )
     }
 }
