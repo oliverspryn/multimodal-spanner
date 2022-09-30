@@ -1,6 +1,5 @@
 package com.oliverspryn.android.multimodal
 
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.window.layout.FoldingFeature
@@ -11,7 +10,17 @@ import com.oliverspryn.android.multimodal.model.WindowSizeClass
 
 class Classifier {
 
-    @Composable
+    private companion object {
+
+        // Numbers per Google's official recommendations:
+        // https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes#window_size_classes
+        private val COMPACT_HEIGHT_BREAKPOINT = 480.dp
+        private val MEDIUM_HEIGHT_BREAKPOINT = 900.dp
+
+        private val COMPACT_WIDTH_BREAKPOINT = 600.dp
+        private val MEDIUM_WIDTH_BREAKPOINT = 840.dp
+    }
+
     fun createClassifier(devicePosture: WindowLayoutInfo, windowDpSize: DpSize): ScreenClassifier {
         val foldingFeature = devicePosture.displayFeatures.find {
             it is FoldingFeature
@@ -39,15 +48,15 @@ class Classifier {
 
     private fun createFullyOpenedDevice(windowDpSize: DpSize): ScreenClassifier.FullyOpened {
         val windowHeightSizeClass = when {
-            windowDpSize.height < 480.dp -> WindowSizeClass.Compact
-            windowDpSize.height < 900.dp -> WindowSizeClass.Medium
-            else -> WindowSizeClass.Expanded
+            windowDpSize.height < COMPACT_HEIGHT_BREAKPOINT -> WindowSizeClass.COMPACT
+            windowDpSize.height < MEDIUM_HEIGHT_BREAKPOINT -> WindowSizeClass.MEDIUM
+            else -> WindowSizeClass.EXPANDED
         }
 
         val windowWidthSizeClass = when {
-            windowDpSize.width < 600.dp -> WindowSizeClass.Compact
-            windowDpSize.width < 840.dp -> WindowSizeClass.Medium
-            else -> WindowSizeClass.Expanded
+            windowDpSize.width < COMPACT_WIDTH_BREAKPOINT -> WindowSizeClass.COMPACT
+            windowDpSize.width < MEDIUM_WIDTH_BREAKPOINT -> WindowSizeClass.MEDIUM
+            else -> WindowSizeClass.EXPANDED
         }
 
         return ScreenClassifier.FullyOpened(

@@ -95,7 +95,7 @@ enum class AdaptiveLayoutsScreenType {
 
 @Composable
 private fun ScreenClassifier.toAdaptiveLayoutsScreenType(numberSelected: Boolean) =
-    if (this is ScreenClassifier.FullyOpened && width.sizeClass == WindowSizeClass.Expanded) {
+    if (this is ScreenClassifier.FullyOpened && width.sizeClass == WindowSizeClass.EXPANDED) {
         AdaptiveLayoutsScreenType.ListOneThirdAndDetailTwoThirds
     } else if (this is ScreenClassifier.FullyOpened && !numberSelected) {
         AdaptiveLayoutsScreenType.ListOnly

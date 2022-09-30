@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.dagger.hilt.android")
     kotlin("android")
     kotlin("kapt")
 }
@@ -19,8 +20,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -32,11 +31,6 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
 
@@ -54,7 +48,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.COMPOSE
+        kotlinCompilerExtensionVersion = Versions.COMPOSE_COMPILER
     }
 
     packagingOptions {
@@ -66,40 +60,31 @@ android {
 
 dependencies {
     api(platform(project(":constraints")))
-    api(platform(project(":multimodal")))
+    api(project(":multimodal"))
     kapt(platform(project(":constraints")))
 
     /////////////////////////////////////////////////////////////////////
 
     // region Application
 
-    // AndroidX
+    debugImplementation(Libraries.COMPOSE_MANIFEST_TEST)
     debugImplementation(Libraries.COMPOSE_UI_TOOLING)
+
     implementation(Libraries.ACTIVITY_COMPOSE)
     implementation(Libraries.COMPOSE_UI)
     implementation(Libraries.COMPOSE_UI_TOOLING_PREVIEW)
     implementation(Libraries.CORE_KTX)
+    implementation(Libraries.DAGGER_ANDROID)
     implementation(Libraries.MATERIAL)
     implementation(Libraries.MATERIAL_3)
     implementation(Libraries.NAVIGATION_COMPOSE)
     implementation(Libraries.WINDOW_MANAGER)
 
-    // endregion
-
-    /////////////////////////////////////////////////////////////////////
-
-    // region Unit Tests
-
-    testImplementation(Libraries.JUNIT)
+    kapt(Libraries.DAGGER_COMPILER)
 
     // endregion
+}
 
-    /////////////////////////////////////////////////////////////////////
-
-    // region UI/Integration/E2E Tests
-
-    androidTestImplementation(Libraries.COMPOSE_TEST)
-    debugImplementation(Libraries.COMPOSE_MANIFEST_TEST)
-
-    // endregion
+kapt {
+    correctErrorTypes = true
 }

@@ -14,9 +14,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -27,11 +24,6 @@ android {
 
         getByName("release") {
             isMinifyEnabled = true
-
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
 
@@ -49,7 +41,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.COMPOSE
+        kotlinCompilerExtensionVersion = Versions.COMPOSE_COMPILER
     }
 }
 
@@ -64,23 +56,6 @@ dependencies {
     implementation(Libraries.ACTIVITY_COMPOSE)
     implementation(Libraries.COMPOSE_UI_UNIT)
     implementation(Libraries.WINDOW_MANAGER)
-
-    // endregion
-
-    /////////////////////////////////////////////////////////////////////
-
-    // region Unit Tests
-
-    testImplementation(Libraries.JUNIT)
-
-    // endregion
-
-    /////////////////////////////////////////////////////////////////////
-
-    // region UI/Integration/E2E Tests
-
-    androidTestImplementation(Libraries.COMPOSE_TEST)
-    debugImplementation(Libraries.COMPOSE_MANIFEST_TEST)
 
     // endregion
 }
