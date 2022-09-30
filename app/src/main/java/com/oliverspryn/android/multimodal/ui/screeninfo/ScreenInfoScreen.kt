@@ -106,11 +106,11 @@ fun PreviewBookMode() {
             screenClassifier = ScreenClassifier.FullyOpened(
                 height = Dimension(
                     dp = 1080.dp,
-                    sizeClass = WindowSizeClass.Expanded
+                    sizeClass = WindowSizeClass.EXPANDED
                 ),
                 width = Dimension(
                     dp = 1920.dp,
-                    sizeClass = WindowSizeClass.Expanded
+                    sizeClass = WindowSizeClass.EXPANDED
                 )
             )
         )

@@ -5,14 +5,20 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.ExperimentalMaterial3Api
 import com.oliverspryn.android.multimodal.ui.MultimodalSpanner
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 @ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var screenCapture: ScreenCapture
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val screenCapture = ScreenCapture(this)
+        screenCapture.init(this)
         val devicePosture = screenCapture.devicePosture()
 
         setContent {
