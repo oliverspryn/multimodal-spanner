@@ -1,0 +1,37 @@
+object CentralRepository {
+
+    const val LIBRARY_NAME = "multimodal-spanner"
+
+    object Artifact {
+
+        const val GROUP_ID = "com.oliverspryn.android"
+        const val ID = LIBRARY_NAME
+        const val VERSION = "1.0.0"
+    }
+
+    object Developer {
+
+        const val ID = "oliverspryn"
+        const val NAME = "Oliver Spryn"
+        const val URL = "https://oliverspryn.com/"
+    }
+
+    object Project {
+
+        const val DESCRIPTION =
+            "Smooths over the rough edges to help you extract information about your Android device's screen and foldable state."
+        const val NAME = "Multimodal Spanner"
+        const val URL = "https://oliverspryn.com/portfolio/multimodal-spanner"
+    }
+
+    object License {
+
+        const val NAME = "MIT License"
+        const val URL = "https://mit-license.org/"
+    }
+
+    object SCM {
+
+        const val URL = "github.com/oliverspryn/multimodal-spanner" // Omit the protocol and trailing slash
+    }
+}

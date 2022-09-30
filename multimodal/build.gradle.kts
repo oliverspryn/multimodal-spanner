@@ -1,5 +1,9 @@
 plugins {
+    `maven-publish`
+    signing
+
     id("com.android.library")
+    id("org.jetbrains.dokka") version Versions.KOTLIN
     kotlin("android")
     kotlin("kapt")
 }
@@ -23,7 +27,7 @@ android {
         }
 
         getByName("release") {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
         }
     }
 
@@ -43,6 +47,13 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.COMPOSE_COMPILER
     }
+
+    publishing {
+        singleVariant("release") {
+            withJavadocJar()
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -58,4 +69,81 @@ dependencies {
     implementation(Libraries.WINDOW_MANAGER)
 
     // endregion
+}
+
+/////////////////////////////////////////////////////////////////////
+
+group = CentralRepository.Artifact.GROUP_ID
+version = CentralRepository.Artifact.VERSION
+
+publishing {
+    publications {
+        create<MavenPublication>(CentralRepository.LIBRARY_NAME) {
+            groupId = CentralRepository.Artifact.GROUP_ID
+            artifactId = CentralRepository.Artifact.ID
+            version = CentralRepository.Artifact.VERSION
+
+            afterEvaluate {
+                from(components["release"])
+            }
+
+            pom {
+                name.set(CentralRepository.Project.NAME)
+                description.set(CentralRepository.Project.DESCRIPTION)
+                url.set(CentralRepository.Project.URL)
+
+                developers {
+                    developer {
+                        id.set(CentralRepository.Developer.ID)
+                        name.set(CentralRepository.Developer.NAME)
+                        url.set(CentralRepository.Developer.URL)
+                    }
+                }
+
+                issueManagement {
+                    url.set("https://${CentralRepository.SCM.URL}/issues")
+                }
+
+                licenses {
+                    license {
+                        name.set(CentralRepository.License.NAME)
+                        name.set(CentralRepository.License.URL)
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:git://${CentralRepository.SCM.URL}.git")
+                    developerConnection.set("scm:git:ssh://${CentralRepository.SCM.URL}.git")
+                    url.set("https://${CentralRepository.SCM.URL}")
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            val releaseUri = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            val snapshotUri = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+
+            name = "central"
+            url = if (CentralRepository.Artifact.VERSION.endsWith("SNAPSHOT")) snapshotUri else releaseUri
+
+            credentials(PasswordCredentials::class)
+
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+        }
+    }
+}
+
+signing {
+    val signingKey: String? by project
+    val signingPassword: String? by project
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign(publishing.publications[CentralRepository.LIBRARY_NAME])
+}
+
+tasks.dokkaHtml.configure {
+    outputDirectory.set(buildDir.resolve("dokka"))
 }
