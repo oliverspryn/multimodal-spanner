@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal.ui.navigation
+package com.oliverspryn.android.multimodal.sample.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -7,10 +7,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.oliverspryn.android.multimodal.model.ScreenClassifier
-import com.oliverspryn.android.multimodal.ui.adaptivelayouts.AdaptiveLayoutsRoute
-import com.oliverspryn.android.multimodal.ui.adaptivelayouts.AdaptiveLayoutsViewModel
-import com.oliverspryn.android.multimodal.ui.home.HomeRoute
-import com.oliverspryn.android.multimodal.ui.screeninfo.ScreenInfoRoute
+import com.oliverspryn.android.multimodal.sample.ui.adaptivelayouts.AdaptiveLayoutsRoute
+import com.oliverspryn.android.multimodal.sample.ui.adaptivelayouts.AdaptiveLayoutsViewModel
+import com.oliverspryn.android.multimodal.sample.ui.home.HomeRoute
+import com.oliverspryn.android.multimodal.sample.ui.screeninfo.ScreenInfoRoute
 
 @Composable
 fun MultimodalSpannerNavGraph(

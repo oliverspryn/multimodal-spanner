@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal.ui.home
+package com.oliverspryn.android.multimodal.sample.ui.home
 
 import androidx.compose.runtime.Composable
 

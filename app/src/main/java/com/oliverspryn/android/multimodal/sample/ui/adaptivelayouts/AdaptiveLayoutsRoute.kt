@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal.ui.adaptivelayouts
+package com.oliverspryn.android.multimodal.sample.ui.adaptivelayouts
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.lazy.rememberLazyListState

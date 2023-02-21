@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal.ui
+package com.oliverspryn.android.multimodal.sample.ui
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,8 +11,8 @@ import androidx.compose.ui.unit.DpSize
 import androidx.navigation.compose.rememberNavController
 import androidx.window.layout.WindowLayoutInfo
 import com.oliverspryn.android.multimodal.Classifier
-import com.oliverspryn.android.multimodal.ui.navigation.MultimodalSpannerNavGraph
-import com.oliverspryn.android.multimodal.ui.theme.MultimodalSpannerTheme
+import com.oliverspryn.android.multimodal.sample.ui.navigation.MultimodalSpannerNavGraph
+import com.oliverspryn.android.multimodal.sample.ui.theme.MultimodalSpannerTheme
 import kotlinx.coroutines.flow.StateFlow
 
 @ExperimentalMaterial3Api

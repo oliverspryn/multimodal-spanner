@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal
+package com.oliverspryn.android.multimodal.sample
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

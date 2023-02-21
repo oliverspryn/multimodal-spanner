@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal.ui.adaptivelayouts
+package com.oliverspryn.android.multimodal.sample.ui.adaptivelayouts
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.oliverspryn.android.multimodal.R
-import com.oliverspryn.android.multimodal.ui.theme.MultimodalSpannerTheme
+import com.oliverspryn.android.multimodal.sample.R
+import com.oliverspryn.android.multimodal.sample.ui.theme.MultimodalSpannerTheme
 
 @Composable
 fun AdaptiveLayoutsDetailScreen(
