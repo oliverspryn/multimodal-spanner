@@ -1,11 +1,11 @@
 object CentralRepository {
 
-    const val LIBRARY_NAME = "multimodal-spanner"
+    const val LIBRARY_NAME = "MultimodalSpanner"
 
     object Artifact {
 
         const val GROUP_ID = "com.oliverspryn.android"
-        const val ID = LIBRARY_NAME
+        const val ID = "multimodal-spanner"
         const val VERSION = "1.0.0"
     }
 
