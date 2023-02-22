@@ -3,7 +3,6 @@ package com.oliverspryn.android.multimodal
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.window.layout.FoldingFeature
-import androidx.window.layout.WindowLayoutInfo
 import com.oliverspryn.android.multimodal.model.Dimension
 import com.oliverspryn.android.multimodal.model.ScreenClassifier
 import com.oliverspryn.android.multimodal.model.WindowSizeClass
