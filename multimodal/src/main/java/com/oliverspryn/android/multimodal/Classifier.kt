@@ -21,17 +21,11 @@ class Classifier {
         private val MEDIUM_WIDTH_BREAKPOINT = 840.dp
     }
 
-    fun createClassifier(devicePosture: WindowLayoutInfo, windowDpSize: DpSize): ScreenClassifier {
-        val foldingFeature = devicePosture.displayFeatures.find {
-            it is FoldingFeature
-        } as? FoldingFeature
-
-        return when {
-            foldingFeature == null -> createFullyOpenedDevice(windowDpSize)
-            isBookMode(foldingFeature) -> createBookModeObject(foldingFeature)
-            isTableTopMode(foldingFeature) -> createTableTopObject(foldingFeature)
-            else -> createFullyOpenedDevice(windowDpSize)
-        }
+    fun createClassifier(foldingFeature: FoldingFeature?, windowDpSize: DpSize) = when {
+        foldingFeature == null -> createFullyOpenedDevice(windowDpSize)
+        isBookMode(foldingFeature) -> createBookModeObject(foldingFeature)
+        isTableTopMode(foldingFeature) -> createTableTopObject(foldingFeature)
+        else -> createFullyOpenedDevice(windowDpSize)
     }
 
     private fun createBookModeObject(foldingFeature: FoldingFeature): ScreenClassifier.HalfOpened.BookMode {

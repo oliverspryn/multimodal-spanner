@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpSize
 import androidx.navigation.compose.rememberNavController
-import androidx.window.layout.WindowLayoutInfo
+import androidx.window.layout.FoldingFeature
 import com.oliverspryn.android.multimodal.Classifier
 import com.oliverspryn.android.multimodal.sample.ui.navigation.MultimodalSpannerNavGraph
 import com.oliverspryn.android.multimodal.sample.ui.theme.MultimodalSpannerTheme
@@ -18,13 +18,13 @@ import kotlinx.coroutines.flow.StateFlow
 @ExperimentalMaterial3Api
 @Composable
 fun MultimodalSpanner(
-    devicePosture: StateFlow<WindowLayoutInfo>,
+    foldingFeature: StateFlow<FoldingFeature?>,
     windowDpSize: DpSize,
     classifier: Classifier = Classifier()
 ) {
-    val devicePostureValue by devicePosture.collectAsState()
+    val foldingFeatureValue by foldingFeature.collectAsState()
     val screenClassifier = classifier.createClassifier(
-        devicePosture = devicePostureValue,
+        foldingFeature = foldingFeatureValue,
         windowDpSize = windowDpSize
     )
 

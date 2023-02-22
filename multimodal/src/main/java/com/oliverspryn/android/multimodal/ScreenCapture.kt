@@ -8,12 +8,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.DpSize
 import androidx.lifecycle.lifecycleScope
+import androidx.window.layout.FoldingFeature
 import androidx.window.layout.WindowInfoTracker
-import androidx.window.layout.WindowLayoutInfo
 import androidx.window.layout.WindowMetricsCalculator
 import com.oliverspryn.android.multimodal.exceptions.MissingActivityException
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 class ScreenCapture {
@@ -24,16 +25,21 @@ class ScreenCapture {
         this.activity = activity
     }
 
-    fun devicePosture(): StateFlow<WindowLayoutInfo> {
+    fun foldingFeature(): StateFlow<FoldingFeature?> {
         val requiredActivity = activity ?: throw MissingActivityException
 
         return WindowInfoTracker
             .getOrCreate(requiredActivity)
             .windowLayoutInfo(requiredActivity)
+            .map { windowInfo ->
+                windowInfo.displayFeatures.find {
+                    it is FoldingFeature
+                } as? FoldingFeature
+            }
             .stateIn(
                 scope = requiredActivity.lifecycleScope,
                 started = SharingStarted.Eagerly,
-                initialValue = WindowLayoutInfo(emptyList())
+                initialValue = null
             )
     }
 

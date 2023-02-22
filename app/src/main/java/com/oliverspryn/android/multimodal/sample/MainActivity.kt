@@ -20,13 +20,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         screenCapture.init(this)
-        val devicePosture = screenCapture.devicePosture()
+        val foldingFeature = screenCapture.foldingFeature()
 
         setContent {
             val windowDpSize = screenCapture.windowDpSize()
 
             MultimodalSpanner(
-                devicePosture = devicePosture,
+                foldingFeature = foldingFeature,
                 windowDpSize = windowDpSize
             )
         }
