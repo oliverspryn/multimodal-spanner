@@ -1,0 +1,7 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:Multimodal Spanner
+com.oliverspryn.android.multimodal
+com.oliverspryn.android.multimodal.exceptions
+com.oliverspryn.android.multimodal.model
