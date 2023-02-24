@@ -1,8 +1,12 @@
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+
 plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
 }
+
+apply(plugin = "org.jetbrains.dokka")
 
 android {
     compileSdk = Versions.COMPILE_SDK
@@ -58,4 +62,9 @@ dependencies {
     implementation(Libraries.WINDOW_MANAGER)
 
     // endregion
+}
+
+tasks.withType<DokkaTaskPartial>().configureEach {
+    moduleName.set(Config.PROJECT_NAME)
+    moduleVersion.set("1.0.0")
 }
