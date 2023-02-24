@@ -1,4 +1,4 @@
-name: Publish to the Central Repository
+name: Publish Library to the Central Repository
 
 on:
   release:
