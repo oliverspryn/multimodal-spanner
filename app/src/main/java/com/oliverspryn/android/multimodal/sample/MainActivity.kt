@@ -1,10 +1,11 @@
-package com.oliverspryn.android.multimodal
+package com.oliverspryn.android.multimodal.sample
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.ExperimentalMaterial3Api
-import com.oliverspryn.android.multimodal.ui.MultimodalSpanner
+import com.oliverspryn.android.multimodal.ScreenCapture
+import com.oliverspryn.android.multimodal.sample.ui.MultimodalSpanner
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -19,13 +20,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         screenCapture.init(this)
-        val devicePosture = screenCapture.devicePosture()
+        val foldingFeature = screenCapture.foldingFeature()
 
         setContent {
             val windowDpSize = screenCapture.windowDpSize()
 
             MultimodalSpanner(
-                devicePosture = devicePosture,
+                foldingFeature = foldingFeature,
                 windowDpSize = windowDpSize
             )
         }

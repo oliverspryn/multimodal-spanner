@@ -3,7 +3,6 @@ package com.oliverspryn.android.multimodal
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.window.layout.FoldingFeature
-import androidx.window.layout.WindowLayoutInfo
 import com.oliverspryn.android.multimodal.model.Dimension
 import com.oliverspryn.android.multimodal.model.ScreenClassifier
 import com.oliverspryn.android.multimodal.model.WindowSizeClass
@@ -29,6 +28,7 @@ class Classifier {
         private val MEDIUM_WIDTH_BREAKPOINT = 840.dp
     }
 
+    
     /**
      * Classifies the device as either fully opened or a foldable in one of
      * several possible postures, based on the information given to it
@@ -38,21 +38,15 @@ class Classifier {
      * practices, as defined here:
      * https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes#window_size_classes
      *
-     * @param devicePosture A physical description of the current state of the screen.
+     * @param foldingFeature A physical description of the screen's folded state, if a hinge is present.
      * @param windowDpSize A rectangle indicating the X and Y dimensions of the screen in DPs (density-independent pixels).
      * @return Data modeling the complete posture and size of the device's screen.
      */
-    fun createClassifier(devicePosture: WindowLayoutInfo, windowDpSize: DpSize): ScreenClassifier {
-        val foldingFeature = devicePosture.displayFeatures.find {
-            it is FoldingFeature
-        } as? FoldingFeature
-
-        return when {
-            foldingFeature == null -> createFullyOpenedDevice(windowDpSize)
-            isBookMode(foldingFeature) -> createBookModeObject(foldingFeature)
-            isTableTopMode(foldingFeature) -> createTableTopObject(foldingFeature)
-            else -> createFullyOpenedDevice(windowDpSize)
-        }
+    fun createClassifier(foldingFeature: FoldingFeature?, windowDpSize: DpSize) = when {
+        foldingFeature == null -> createFullyOpenedDevice(windowDpSize)
+        isBookMode(foldingFeature) -> createBookModeObject(foldingFeature)
+        isTableTopMode(foldingFeature) -> createTableTopObject(foldingFeature)
+        else -> createFullyOpenedDevice(windowDpSize)
     }
 
     private fun createBookModeObject(foldingFeature: FoldingFeature): ScreenClassifier.HalfOpened.BookMode {

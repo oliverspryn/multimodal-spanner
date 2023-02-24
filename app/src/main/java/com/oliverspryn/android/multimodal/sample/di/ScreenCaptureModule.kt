@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal.di
+package com.oliverspryn.android.multimodal.sample.di
 
 import com.oliverspryn.android.multimodal.ScreenCapture
 import dagger.Module

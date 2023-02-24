@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal.ui.screeninfo
+package com.oliverspryn.android.multimodal.sample.ui.screeninfo
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Box
@@ -18,11 +18,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.oliverspryn.android.multimodal.R
 import com.oliverspryn.android.multimodal.model.Dimension
 import com.oliverspryn.android.multimodal.model.ScreenClassifier
 import com.oliverspryn.android.multimodal.model.WindowSizeClass
-import com.oliverspryn.android.multimodal.ui.theme.MultimodalSpannerTheme
+import com.oliverspryn.android.multimodal.sample.R
+import com.oliverspryn.android.multimodal.sample.ui.theme.MultimodalSpannerTheme
 
 @Composable
 fun ScreenInfoScreen(screenClassifier: ScreenClassifier) {

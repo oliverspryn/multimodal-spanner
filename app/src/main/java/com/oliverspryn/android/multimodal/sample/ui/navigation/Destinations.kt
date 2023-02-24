@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal.ui.navigation
+package com.oliverspryn.android.multimodal.sample.ui.navigation
 
 object Destinations {
     const val AdaptiveLayouts = "adaptive-layouts"

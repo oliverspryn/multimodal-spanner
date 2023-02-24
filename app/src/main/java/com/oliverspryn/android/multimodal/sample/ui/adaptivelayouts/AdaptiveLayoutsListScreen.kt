@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal.ui.adaptivelayouts
+package com.oliverspryn.android.multimodal.sample.ui.adaptivelayouts
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.clickable
@@ -17,7 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.oliverspryn.android.multimodal.ui.theme.MultimodalSpannerTheme
+import com.oliverspryn.android.multimodal.sample.ui.theme.MultimodalSpannerTheme
 
 @Composable
 fun AdaptiveLayoutsListScreen(

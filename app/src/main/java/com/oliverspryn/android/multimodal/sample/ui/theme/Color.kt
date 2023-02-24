@@ -1,4 +1,4 @@
-package com.oliverspryn.android.multimodal.ui.theme
+package com.oliverspryn.android.multimodal.sample.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
