@@ -8,7 +8,7 @@ object Versions {
     const val TARGET_SDK = 33
 
     const val VERSION_CODE = 1
-    const val VERSION_NAME = "0.0.1"
+    const val VERSION_NAME = CentralRepository.Artifact.VERSION
 
     // endregion
 

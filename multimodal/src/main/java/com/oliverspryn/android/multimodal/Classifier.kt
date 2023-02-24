@@ -7,6 +7,14 @@ import com.oliverspryn.android.multimodal.model.Dimension
 import com.oliverspryn.android.multimodal.model.ScreenClassifier
 import com.oliverspryn.android.multimodal.model.WindowSizeClass
 
+/**
+ * Uses information about the device's foldable posture and the size
+ * of the screen to determine what posture the screen is in and all
+ * of the information that can be extracted about the size of the screen
+ * and where its hinge is located.
+ *
+ * @constructor A default instance of this class without any initialization or other actions.
+ */
 class Classifier {
 
     private companion object {
@@ -20,6 +28,20 @@ class Classifier {
         private val MEDIUM_WIDTH_BREAKPOINT = 840.dp
     }
 
+    
+    /**
+     * Classifies the device as either fully opened or a foldable in one of
+     * several possible postures, based on the information given to it
+     * about the app's window.
+     *
+     * The window's size class uses breakpoints following Google's recommended
+     * practices, as defined here:
+     * https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes#window_size_classes
+     *
+     * @param foldingFeature A physical description of the screen's folded state, if a hinge is present.
+     * @param windowDpSize A rectangle indicating the X and Y dimensions of the screen in DPs (density-independent pixels).
+     * @return Data modeling the complete posture and size of the device's screen.
+     */
     fun createClassifier(foldingFeature: FoldingFeature?, windowDpSize: DpSize) = when {
         foldingFeature == null -> createFullyOpenedDevice(windowDpSize)
         isBookMode(foldingFeature) -> createBookModeObject(foldingFeature)

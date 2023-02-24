@@ -1,3 +1,5 @@
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+
 plugins {
     `maven-publish`
     signing
@@ -7,6 +9,8 @@ plugins {
     kotlin("android")
     kotlin("kapt")
 }
+
+apply(plugin = "org.jetbrains.dokka")
 
 android {
     compileSdk = Versions.COMPILE_SDK
@@ -144,6 +148,7 @@ signing {
     sign(publishing.publications[CentralRepository.LIBRARY_NAME])
 }
 
-tasks.dokkaHtml.configure {
-    outputDirectory.set(buildDir.resolve("dokka"))
+tasks.withType<DokkaTaskPartial>().configureEach {
+    moduleName.set(Config.PROJECT_NAME)
+    moduleVersion.set(CentralRepository.Artifact.VERSION)
 }
