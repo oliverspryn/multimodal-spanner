@@ -16,14 +16,44 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 
+/**
+ * Captures raw, unclassified data about the the screen's dimensions and
+ * information about the device's hinge, assuming it is present.
+ *
+ * @constructor A default instance of this class without any initialization or other actions.
+ */
 class ScreenCapture {
 
     private var activity: ComponentActivity? = null
 
+    /**
+     * For use outside of composable functions.
+     *
+     * Initializes the capture class with a copy of the activity it will be using
+     * to measure the screen against.
+     *
+     * This function is broken out separately from the constructor so that you can
+     * use the [ScreenCapture] class itself inside of DI framework, like Hilt, and
+     * later setup the capturing capabilities in the <code>onCreate()</code> function
+     * of a [ComponentActivity].
+     *
+     * @param activity An activity which will be used to measure the screen.
+     */
     fun init(activity: ComponentActivity) {
         this.activity = activity
     }
 
+    /**
+     * For use outside of composable functions.
+     * [init] must be called first!
+     *
+     * Captures the raw, unclassified data from the video about the state of a foldable
+     * hinge, if it is present. All updates are pushed with real time updates via a
+     * Kotlin [StateFlow] object.
+     *
+     * @throws MissingActivityException If the [init] function isn't called before this one.
+     * @return Raw data about the device's foldable hinge, pushed in real time via a Kotlin [StateFlow] object.
+     */
     fun devicePosture(): StateFlow<WindowLayoutInfo> {
         val requiredActivity = activity ?: throw MissingActivityException
 
@@ -37,6 +67,18 @@ class ScreenCapture {
             )
     }
 
+    /**
+     * For use in composable functions only.
+     * [init] must be called first!
+     *
+     * Returns the raw, unprocessed data showing the X and Y dimensions of the window,
+     * measured in DPs (density-independent pixels). These updates are properly adjusted
+     * when the app is in split mode or windowed mode. It will then measure the size of
+     * the app's window, instead of the entire screen.
+     *
+     * @throws MissingActivityException If the [init] function isn't called before this one.
+     * @return Current size of the app window, taking into account full screen, split screen, and windowed apps.
+     */
     @Composable
     fun windowDpSize(): DpSize {
         val requiredActivity = activity ?: throw MissingActivityException
