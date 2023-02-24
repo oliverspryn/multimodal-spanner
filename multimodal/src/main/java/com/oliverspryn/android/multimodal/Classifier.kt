@@ -34,6 +34,10 @@ class Classifier {
      * several possible postures, based on the information given to it
      * about the app's window.
      *
+     * The window's size class uses breakpoints following Google's recommended
+     * practices, as defined here:
+     * https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes#window_size_classes
+     *
      * @param devicePosture A physical description of the current state of the screen.
      * @param windowDpSize A rectangle indicating the X and Y dimensions of the screen in DPs (density-independent pixels).
      * @return Data modeling the complete posture and size of the device's screen.
