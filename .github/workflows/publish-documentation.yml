@@ -1,11 +1,8 @@
 name: Publish Dokka Documentation to GitHub Pages
 
 on:
-  push:
-
-#on:
-#  release:
-#    types: [created]
+ release:
+   types: [created]
 
 jobs:
   build:
@@ -26,7 +23,7 @@ jobs:
       with:
         arguments: dokkaHtmlMultiModule
 
-    - name: Deploy API documentation to Github Pages
+    - name: Deploy Documentation to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages
