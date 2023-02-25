@@ -5,7 +5,7 @@ plugins {
     signing
 
     id("com.android.library")
-    id("org.jetbrains.dokka") version Versions.KOTLIN
+    id("org.jetbrains.dokka") version Versions.DOKKA
     kotlin("android")
     kotlin("kapt")
 }
@@ -14,6 +14,7 @@ apply(plugin = "org.jetbrains.dokka")
 
 android {
     compileSdk = Versions.COMPILE_SDK
+    namespace = Config.APPLICATION_ID
 
     defaultConfig {
         minSdk = Versions.MIN_SDK

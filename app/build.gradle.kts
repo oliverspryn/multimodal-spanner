@@ -7,9 +7,10 @@ plugins {
 
 android {
     compileSdk = Versions.COMPILE_SDK
+    namespace = "${Config.APPLICATION_ID}.sample"
 
     defaultConfig {
-        applicationId = Config.APPLICATION_ID
+        applicationId = "${Config.APPLICATION_ID}.sample"
 
         minSdk = Versions.MIN_SDK
         targetSdk = Versions.TARGET_SDK

@@ -36,7 +36,7 @@ class Classifier {
      *
      * The window's size class uses breakpoints following Google's recommended
      * practices, as defined here:
-     * https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes#window_size_classes
+     * [Window Size Classes](https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes#window_size_classes).
      *
      * @param foldingFeature A physical description of the screen's folded state, if a hinge is present.
      * @param windowDpSize A rectangle indicating the X and Y dimensions of the screen in DPs (density-independent pixels).

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MultimodalSpanner</string>
+    <string name="app_name">Multimodal Spanner</string>
 
     <string name="view_screen_info">View Screen Information</string>
     <string name="view_adaptive_layouts">View Adaptive Layouts</string>

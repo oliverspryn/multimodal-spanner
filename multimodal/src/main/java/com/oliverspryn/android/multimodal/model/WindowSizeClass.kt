@@ -8,7 +8,7 @@ package com.oliverspryn.android.multimodal.model
  * axes.
  *
  * These breakpoints follow Google's recommended practices, as defined here:
- * https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes#window_size_classes
+ * [Window Size Classes](https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes#window_size_classes).
  *
  * @see com.oliverspryn.android.multimodal.Classifier
  * @see ScreenClassifier
