@@ -1,11 +1,8 @@
 name: Publish Library to the Central Repository
 
-#on:
-#  release:
-#    types: [created]
-
 on:
-  push:
+  release:
+    types: [created]
 
 jobs:
   build:
@@ -33,7 +30,7 @@ jobs:
       uses: gradle/gradle-build-action@v2
       with:
         arguments: |
-          signMultimodalSpannerPublication
+          publishMultimodalSpannerPublicationToCentralRepository
           -PcentralUsername=$CENTRAL_REPOSITORY_USERNAME
           -PcentralPassword=$CENTRAL_REPOSITORY_PASSWORD
       env:
