@@ -1,0 +1,66 @@
+[versions]
+# Core
+agp = "8.2.2"
+dokka = "1.9.10"
+hilt = "2.50"
+hilt-navigation-compose = "1.1.0"
+kotlin = "1.9.22"      # KSP and Kotlin must...
+ksp = "1.9.22-1.0.17"  # ... share the same major.minor.patch version
+
+# AndroidX
+activity-ktx = "1.8.2"
+material = "1.11.0"
+window = "1.2.0"
+
+# Jetpack Compose
+compose = "2024.01.00"
+compose-compiler = "1.5.8"
+compose-ui-unit = "1.6.0"
+navigation = "2.7.6"
+
+# Other
+
+[libraries]
+# AndroidX
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+window = { group = "androidx.window", name = "window", version.ref = "window" }
+
+# Build Logic
+agp = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+dokka = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version.ref = "dokka" }
+kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+# Dagger Hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+
+# Jetpack Compose
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-ktx" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
+material3 = { group = "androidx.compose.material3", name = "material3" }
+navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+ui = { group = "androidx.compose.ui", name = "ui" }
+ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+ui-unit = { group = "androidx.compose.ui", name = "ui-unit", version.ref = "compose-ui-unit" } # Versioned outside of the BOM for minimal version conflicts with apps using this library
+
+[plugins]
+# Core
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+# Multimodal Spanner Convention Plugins
+multimodal-app = { id = "multimodal.app", version = "unspecified" }
+multimodal-compose-app = { id = "multimodal.compose-app", version = "unspecified" }
+multimodal-compose-library-base = { id = "multimodal.compose-library-base", version = "unspecified" }
+multimodal-dokka = { id = "multimodal.dokka", version = "unspecified" }
+multimodal-hilt = { id = "multimodal.hilt", version = "unspecified" }
+multimodal-library = { id = "multimodal.library", version = "unspecified" }
+multimodal-publish = { id = "multimodal.publish", version = "unspecified" }
