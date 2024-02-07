@@ -1,2 +1,21 @@
-[*]
+[*.{kt,kts}]
+# https://pinterest.github.io/ktlint/latest/rules/configuration-ktlint/#code-style
+ktlint_code_style = intellij_idea
+
+#############################################
+
+# https://pinterest.github.io/ktlint/latest/rules/configuration-ktlint/#final-newline
 insert_final_newline = true
+
+# https://pinterest.github.io/ktlint/latest/rules/standard/#trailing-comma-on-declaration-site
+ij_kotlin_allow_trailing_comma = false
+
+# https://pinterest.github.io/ktlint/latest/rules/standard/#trailing-comma-on-call-site
+ij_kotlin_allow_trailing_comma_on_call_site = false
+
+# https://pinterest.github.io/ktlint/latest/rules/standard/#no-wildcard-imports
+ij_kotlin_packages_to_use_import_on_demand = unset # Disallows all wildcard imports
+
+# https://pinterest.github.io/ktlint/latest/rules/standard/#import-ordering
+# https://pinterest.github.io/ktlint/latest/rules/standard/#no-wildcard-imports
+ij_kotlin_imports_layout = * # Alphabetical with capital letters before lower case letters (e.g. Z before a), no blank lines
