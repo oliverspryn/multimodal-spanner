@@ -6,7 +6,7 @@ object CentralRepository {
     object Artifact {
         const val GROUP_ID = "com.oliverspryn.android"
         const val ID = "multimodal-spanner"
-        const val VERSION = "1.0.0"
+        const val VERSION = "1.1.0"
     }
 
     object Developer {
