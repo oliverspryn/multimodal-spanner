@@ -46,7 +46,7 @@ class PublishConventionPlugin : Plugin<Project> {
                         version = CentralRepository.Artifact.VERSION
 
                         afterEvaluate {
-                            from(components["release"])
+                            from(components[BuildConfig.BuildType.Release.name])
                         }
 
                         pom {
