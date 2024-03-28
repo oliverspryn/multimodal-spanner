@@ -2,7 +2,9 @@ package com.oliverspryn.gradle.plugin
 
 import com.android.build.api.dsl.LibraryExtension
 import com.oliverspryn.gradle.BuildConfig
-import com.oliverspryn.gradle.CentralRepository
+import com.oliverspryn.gradle.CentralRepositoryConfig
+import com.oliverspryn.gradle.delegate.envVar
+import com.oliverspryn.gradle.extension.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.PasswordCredentials
@@ -15,68 +17,67 @@ import org.gradle.kotlin.dsl.credentials
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.provideDelegate
-import org.gradle.kotlin.dsl.repositories
 import org.gradle.plugins.signing.SigningExtension
 
-class PublishConventionPlugin : Plugin<Project> {
+class CentralRepositoryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            with(pluginManager) {
+            plugins {
                 apply("maven-publish")
                 apply("signing")
             }
 
             extensions.configure<LibraryExtension> {
                 publishing {
-                    singleVariant(BuildConfig.BuildType.Release.name) {
+                    singleVariant(BuildConfig.Release.name) {
                         withJavadocJar()
                         withSourcesJar()
                     }
                 }
             }
 
-            group = CentralRepository.Artifact.GROUP_ID
-            version = CentralRepository.Artifact.VERSION
+            group = CentralRepositoryConfig.Artifact.GROUP_ID
+            version = CentralRepositoryConfig.Artifact.VERSION
 
             extensions.configure<PublishingExtension> {
                 publications {
-                    create<MavenPublication>(CentralRepository.LIBRARY_NAME) {
-                        groupId = CentralRepository.Artifact.GROUP_ID
-                        artifactId = CentralRepository.Artifact.ID
-                        version = CentralRepository.Artifact.VERSION
+                    create<MavenPublication>(CentralRepositoryConfig.LIBRARY_NAME) {
+                        groupId = CentralRepositoryConfig.Artifact.GROUP_ID
+                        artifactId = CentralRepositoryConfig.Artifact.ID
+                        version = CentralRepositoryConfig.Artifact.VERSION
 
                         afterEvaluate {
-                            from(components[BuildConfig.BuildType.Release.name])
+                            from(components[BuildConfig.Release.name])
                         }
 
                         pom {
-                            name.set(CentralRepository.Project.NAME)
-                            description.set(CentralRepository.Project.DESCRIPTION)
-                            url.set(CentralRepository.Project.URL)
+                            name.set(CentralRepositoryConfig.Project.NAME)
+                            description.set(CentralRepositoryConfig.Project.DESCRIPTION)
+                            url.set(CentralRepositoryConfig.Project.URL)
 
                             developers {
                                 developer {
-                                    id.set(CentralRepository.Developer.ID)
-                                    name.set(CentralRepository.Developer.NAME)
-                                    url.set(CentralRepository.Developer.URL)
+                                    id.set(CentralRepositoryConfig.Developer.ID)
+                                    name.set(CentralRepositoryConfig.Developer.NAME)
+                                    url.set(CentralRepositoryConfig.Developer.URL)
                                 }
                             }
 
                             issueManagement {
-                                url.set("https://${CentralRepository.SCM.URL}/issues")
+                                url.set("https://${CentralRepositoryConfig.SCM.URL}/issues")
                             }
 
                             licenses {
                                 license {
-                                    name.set(CentralRepository.License.NAME)
-                                    name.set(CentralRepository.License.URL)
+                                    name.set(CentralRepositoryConfig.License.NAME)
+                                    name.set(CentralRepositoryConfig.License.URL)
                                 }
                             }
 
                             scm {
-                                connection.set("scm:git:git://${CentralRepository.SCM.URL}.git")
-                                developerConnection.set("scm:git:ssh://${CentralRepository.SCM.URL}.git")
-                                url.set("https://${CentralRepository.SCM.URL}")
+                                connection.set("scm:git:git://${CentralRepositoryConfig.SCM.URL}.git")
+                                developerConnection.set("scm:git:ssh://${CentralRepositoryConfig.SCM.URL}.git")
+                                url.set("https://${CentralRepositoryConfig.SCM.URL}")
                             }
                         }
                     }
@@ -88,7 +89,7 @@ class PublishConventionPlugin : Plugin<Project> {
                         val snapshotUri = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 
                         name = "central"
-                        url = if (CentralRepository.Artifact.VERSION.endsWith("SNAPSHOT")) snapshotUri else releaseUri
+                        url = if (CentralRepositoryConfig.Artifact.VERSION.endsWith("SNAPSHOT")) snapshotUri else releaseUri
 
                         credentials(PasswordCredentials::class)
 
@@ -100,12 +101,11 @@ class PublishConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<SigningExtension> {
-                @Suppress("ktlint:standard:property-naming")
-                val GPG_SIGNING_KEY: String? by project
-                val GPG_SIGNING_KEY_PASSWORD: String? by project
+                val gpgSigningKey: String by envVar("GPG_SIGNING_KEY")
+                val gpgSigningKeyPassword: String by envVar("GPG_SIGNING_KEY_PASSWORD")
 
-                useInMemoryPgpKeys(GPG_SIGNING_KEY, GPG_SIGNING_KEY_PASSWORD)
-                sign(extensions.getByType<PublishingExtension>().publications[CentralRepository.LIBRARY_NAME])
+                useInMemoryPgpKeys(gpgSigningKey, gpgSigningKeyPassword)
+                sign(extensions.getByType<PublishingExtension>().publications[CentralRepositoryConfig.LIBRARY_NAME])
             }
         }
     }

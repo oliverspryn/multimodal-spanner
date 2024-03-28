@@ -1,9 +1,9 @@
 [versions]
 # Core
-agp = "8.2.2"
-dokka = "1.9.10"
+agp = "8.3.1"
+dokka = "1.9.20"
 hilt = "2.50"
-hilt-navigation-compose = "1.1.0"
+hilt-navigation-compose = "1.2.0"
 kotlin = "1.9.22"      # KSP and Kotlin must...
 ksp = "1.9.22-1.0.17"  # ... share the same major.minor.patch version
 
@@ -13,12 +13,13 @@ material = "1.11.0"
 window = "1.2.0"
 
 # Jetpack Compose
-compose = "2024.01.00"
+compose = "2024.03.00"
 compose-compiler = "1.5.8"
-compose-ui-unit = "1.6.0"
-navigation = "2.7.6"
+compose-ui-unit = "1.6.4"
+navigation = "2.7.7"
 
 # Other
+desugaring = "2.0.4"
 
 [libraries]
 # AndroidX
@@ -32,6 +33,7 @@ kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", versio
 
 # Dagger Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 
@@ -42,10 +44,14 @@ material3 = { group = "androidx.compose.material3", name = "material3" }
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 ui-unit = { group = "androidx.compose.ui", name = "ui-unit", version.ref = "compose-ui-unit" } # Versioned outside of the BOM for minimal version conflicts with apps using this library
+
+# Other
+desugaring = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugaring" }
 
 [plugins]
 # Core
@@ -58,9 +64,8 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 # Multimodal Spanner Convention Plugins
 multimodal-app = { id = "multimodal.app", version = "unspecified" }
-multimodal-compose-app = { id = "multimodal.compose-app", version = "unspecified" }
-multimodal-compose-library-base = { id = "multimodal.compose-library-base", version = "unspecified" }
+multimodal-centralrepository = { id = "multimodal.centralrepository", version = "unspecified" }
+multimodal-compose = { id = "multimodal.compose", version = "unspecified" }
 multimodal-dokka = { id = "multimodal.dokka", version = "unspecified" }
 multimodal-hilt = { id = "multimodal.hilt", version = "unspecified" }
 multimodal-library = { id = "multimodal.library", version = "unspecified" }
-multimodal-publish = { id = "multimodal.publish", version = "unspecified" }

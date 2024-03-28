@@ -30,7 +30,8 @@ jobs:
         GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
         GPG_SIGNING_KEY_PASSWORD: ${{ secrets.GPG_SIGNING_KEY_PASSWORD }}
 
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+  
     - name: Publish the Library
-      uses: gradle/gradle-build-action@v3
-      with:
-        arguments: publishMultimodalSpannerPublicationToCentralRepository
+      run: ./gradlew publishMultimodalSpannerPublicationToCentralRepository --max-workers 1 closeAndReleaseSonatypeStagingRepository

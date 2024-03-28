@@ -1,9 +1,29 @@
+import com.oliverspryn.gradle.BuildConfig
+import com.oliverspryn.gradle.extension.version
+
 plugins {
     alias(libs.plugins.multimodal.library)
 
-    alias(libs.plugins.multimodal.compose.library.base)
+    alias(libs.plugins.multimodal.centralrepository)
     alias(libs.plugins.multimodal.dokka)
-    alias(libs.plugins.multimodal.publish)
+}
+
+android {
+    namespace = BuildConfig.App.NAMESPACE // Overrides the namespace from the library convention plugin
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = version("compose-compiler")
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {

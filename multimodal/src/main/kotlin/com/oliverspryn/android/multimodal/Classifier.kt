@@ -16,10 +16,8 @@ import com.oliverspryn.android.multimodal.model.WindowSizeClass
  * @constructor A default instance of this class without any initialization
  *     or other actions.
  */
-class Classifier {
-
+open class Classifier {
     private companion object {
-
         // Numbers per Google's official recommendations:
         // https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes#window_size_classes
         private val COMPACT_HEIGHT_BREAKPOINT = 480.dp

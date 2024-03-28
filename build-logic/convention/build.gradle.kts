@@ -29,17 +29,17 @@ gradlePlugin {
     plugins {
         register("app") {
             id = "multimodal.app"
-            implementationClass = "com.oliverspryn.gradle.plugin.AndroidApplicationConventionPlugin"
+            implementationClass = "com.oliverspryn.gradle.plugin.ApplicationConventionPlugin"
         }
 
-        register("compose-app") {
-            id = "multimodal.compose-app"
-            implementationClass = "com.oliverspryn.gradle.plugin.ComposeApplicationConventionPlugin"
+        register("centralrepository") {
+            id = "multimodal.centralrepository"
+            implementationClass = "com.oliverspryn.gradle.plugin.CentralRepositoryConventionPlugin"
         }
 
-        register("compose-library-base") {
-            id = "multimodal.compose-library-base"
-            implementationClass = "com.oliverspryn.gradle.plugin.BaseComposeLibraryConventionPlugin"
+        register("compose") {
+            id = "multimodal.compose"
+            implementationClass = "com.oliverspryn.gradle.plugin.JetpackComposeConventionPlugin"
         }
 
         register("dokka") {
@@ -54,12 +54,7 @@ gradlePlugin {
 
         register("library") {
             id = "multimodal.library"
-            implementationClass = "com.oliverspryn.gradle.plugin.AndroidLibraryConventionPlugin"
-        }
-
-        register("publish") {
-            id = "multimodal.publish"
-            implementationClass = "com.oliverspryn.gradle.plugin.PublishConventionPlugin"
+            implementationClass = "com.oliverspryn.gradle.plugin.LibraryConventionPlugin"
         }
     }
 }
