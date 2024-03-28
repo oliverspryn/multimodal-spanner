@@ -3,6 +3,8 @@ name: Publish Dokka Documentation to GitHub Pages
 on:
  release:
    types: [created]
+env:
+  CI: true
 
 jobs:
   build:
