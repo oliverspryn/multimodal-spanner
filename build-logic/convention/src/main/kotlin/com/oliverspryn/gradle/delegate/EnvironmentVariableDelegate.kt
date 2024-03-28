@@ -24,8 +24,8 @@ class EnvironmentVariableDelegate(
 /**
  * Gets an environment variable in one of two ways:
  * ```kotlin
- * val JAVA_HOME: String by envVar() // Fetches the environment variable named "JAVA_HOME"
- * val javaHome: String by envVar("JAVA_HOME") // Fetches the environment variable named "JAVA_HOME"
+ * val JAVA_HOME by envVar() // Fetches the environment variable named "JAVA_HOME" as a String
+ * val javaHome by envVar("JAVA_HOME") // Fetches the environment variable named "JAVA_HOME" as a String
  * ```
  *
  * @param variableName The name of the environment variable to fetch. If
