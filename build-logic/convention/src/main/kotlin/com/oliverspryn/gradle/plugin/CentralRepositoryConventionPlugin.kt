@@ -101,8 +101,8 @@ class CentralRepositoryConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<SigningExtension> {
-                val gpgSigningKey: String? by envVar("GPG_SIGNING_KEY")
-                val gpgSigningKeyPassword: String? by envVar("GPG_SIGNING_KEY_PASSWORD")
+                val gpgSigningKey: String by envVar("GPG_SIGNING_KEY")
+                val gpgSigningKeyPassword: String by envVar("GPG_SIGNING_KEY_PASSWORD")
 
                 useInMemoryPgpKeys(gpgSigningKey, gpgSigningKeyPassword)
                 sign(extensions.getByType<PublishingExtension>().publications[CentralRepositoryConfig.LIBRARY_NAME])

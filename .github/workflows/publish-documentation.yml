@@ -18,10 +18,11 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+      
     - name: Build the Dokka Documentation
-      uses: gradle/gradle-build-action@v3
-      with:
-        arguments: dokkaHtmlMultiModule
+      run: ./gradlew dokkaHtmlMultiModule
 
     - name: Deploy Documentation to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
