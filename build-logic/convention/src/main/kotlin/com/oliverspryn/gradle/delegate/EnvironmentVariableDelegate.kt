@@ -5,16 +5,14 @@ import kotlin.reflect.KProperty
 
 class EnvironmentVariableDelegate(
     private val variableName: String? = null
-) : ReadOnlyProperty<Any?, String> {
-    override fun getValue(thisRef: Any?, property: KProperty<*>): String {
+) : ReadOnlyProperty<Any?, String?> {
+    override fun getValue(thisRef: Any?, property: KProperty<*>): String? {
         val nameToUse = variableName ?: property.name
 
         return if (hasEnvVar(nameToUse)) {
             System.getenv(nameToUse) as String
-        } else if (!hasEnvVar("CI")) {
-            ""
         } else {
-            throw IllegalStateException("Environment variable '$nameToUse' is not set.")
+            null
         }
     }
 
@@ -32,11 +30,6 @@ class EnvironmentVariableDelegate(
  *
  * @param variableName The name of the environment variable to fetch. If
  *     `null`, the name of the Kotlin variable will be used.
- * @return The value of the environment variable.
- * @throws IllegalStateException If the environment variable is not set
- *     only on a CI. If this is not a CI machine, an empty string is
- *     returned. This is to allow for local development without setting all
- *     environment variables. A CI is determined by the presence of the
- *     `CI` environment variable.
+ * @return The value of the environment variable or `null` if it is not set.
  */
 fun envVar(variableName: String? = null) = EnvironmentVariableDelegate(variableName)

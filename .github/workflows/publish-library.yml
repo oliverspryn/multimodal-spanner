@@ -3,8 +3,6 @@ name: Publish Library to the Central Repository
 on:
   release:
     types: [created]
-env:
-  CI: true
 
 jobs:
   build:
