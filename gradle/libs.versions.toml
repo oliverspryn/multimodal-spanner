@@ -6,6 +6,7 @@ hilt = "2.50"
 hilt-navigation-compose = "1.2.0"
 kotlin = "1.9.22"      # KSP and Kotlin must...
 ksp = "1.9.22-1.0.17"  # ... share the same major.minor.patch version
+nexus = "2.0.0-rc-2"
 
 # AndroidX
 activity-ktx = "1.8.2"
@@ -59,8 +60,9 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+nexus = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexus" }
 
 # Multimodal Spanner Convention Plugins
 multimodal-app = { id = "multimodal.app", version = "unspecified" }

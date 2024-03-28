@@ -19,7 +19,7 @@ abstract class BaseModuleConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             plugins {
-                apply(plugin("kotlin-android"))
+                apply(plugin("kotlin"))
             }
 
             android {
