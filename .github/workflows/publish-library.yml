@@ -34,4 +34,4 @@ jobs:
       uses: gradle/actions/setup-gradle@v3
   
     - name: Publish the Library
-      run: ./gradlew publishMultimodalSpannerPublicationToCentralRepository --max-workers 1 closeAndReleaseSonatypeStagingRepository
+      run: ./gradlew publishMultimodalSpannerPublicationToCentralRepository --max-workers 1 closeAndReleaseStagingRepositories
