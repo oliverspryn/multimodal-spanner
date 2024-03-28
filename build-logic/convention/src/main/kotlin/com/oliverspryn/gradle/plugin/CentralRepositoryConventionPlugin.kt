@@ -3,7 +3,7 @@ package com.oliverspryn.gradle.plugin
 import com.android.build.api.dsl.LibraryExtension
 import com.oliverspryn.gradle.BuildConfig
 import com.oliverspryn.gradle.CentralRepositoryConfig
-import com.oliverspryn.gradle.delegate.envVar
+import com.oliverspryn.gradle.delegate.propertyValue
 import com.oliverspryn.gradle.extension.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -101,8 +101,8 @@ class CentralRepositoryConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<SigningExtension> {
-                val gpgSigningKey: String by envVar("GPG_SIGNING_KEY")
-                val gpgSigningKeyPassword: String by envVar("GPG_SIGNING_KEY_PASSWORD")
+                val gpgSigningKey by propertyValue("GPG_SIGNING_KEY")
+                val gpgSigningKeyPassword by propertyValue("GPG_SIGNING_KEY_PASSWORD")
 
                 useInMemoryPgpKeys(gpgSigningKey, gpgSigningKeyPassword)
                 sign(extensions.getByType<PublishingExtension>().publications[CentralRepositoryConfig.LIBRARY_NAME])
