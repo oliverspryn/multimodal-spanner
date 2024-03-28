@@ -1,6 +1,6 @@
 package com.oliverspryn.gradle
 
-object CentralRepository {
+object CentralRepositoryConfig {
     const val LIBRARY_NAME = "MultimodalSpanner"
 
     object Artifact {
@@ -27,6 +27,6 @@ object CentralRepository {
     }
 
     object SCM {
-        const val URL = "github.com/oliverspryn/multimodal-spanner" // Omit the protocol and trailing slash
+        const val URL = "github.com/oliverspryn/multimodal-spanner" // Omit the `protocol://` and trailing slash
     }
 }
