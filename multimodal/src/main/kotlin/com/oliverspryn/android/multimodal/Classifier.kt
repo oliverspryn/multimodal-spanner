@@ -13,6 +13,9 @@ import com.oliverspryn.android.multimodal.model.WindowSizeClass
  * that can be extracted about the size of the screen and where its hinge
  * is located.
  *
+ * This class and all of its methods are open for extension and override,
+ * particularly for creating fakes for testing purposes.
+ *
  * @constructor A default instance of this class without any initialization
  *     or other actions.
  */
@@ -36,6 +39,9 @@ open class Classifier {
      * practices, as defined here:
      * [Window Size Classes](https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes#window_size_classes).
      *
+     * This method is open for extension and override, particularly for
+     * creating fakes for testing purposes.
+     *
      * @param foldingFeature A physical description of the screen's folded
      *     state, if a hinge is present.
      * @param windowDpSize A rectangle indicating the X and Y dimensions of the
@@ -43,7 +49,7 @@ open class Classifier {
      * @return Data modeling the complete posture and size of the device's
      *     screen.
      */
-    fun createClassifier(foldingFeature: FoldingFeature?, windowDpSize: DpSize) = when {
+    open fun createClassifier(foldingFeature: FoldingFeature?, windowDpSize: DpSize) = when {
         foldingFeature == null -> createFullyOpenedDevice(windowDpSize)
         isBookMode(foldingFeature) -> createBookModeObject(foldingFeature)
         isTableTopMode(foldingFeature) -> createTableTopObject(foldingFeature)
